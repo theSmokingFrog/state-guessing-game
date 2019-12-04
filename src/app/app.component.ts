@@ -95,7 +95,7 @@ export class AppComponent implements OnInit {
   }
 
   public submit() {
-    const answer = this.form.value.state.toLowerCase();
+    const answer = this.form.value.state.trim().toLowerCase();
     if (!this.answers.includes(answer)) {
       this.answers.push(answer);
       if (!this.isCorrect(answer)) {
