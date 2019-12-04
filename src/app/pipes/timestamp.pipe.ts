@@ -15,7 +15,7 @@ export class TimestampPipe implements PipeTransform {
       const hours = minutes / 60;
       return `${TimestampPipe.toFormatedString(hours)} : ${TimestampPipe.toFormatedString(minutes)} : ${TimestampPipe.toFormatedString(timeValueInSeconds)}`;
     } else {
-      return '-- : -- : --';
+      return '00 : 00 : 00';
     }
   }
 }

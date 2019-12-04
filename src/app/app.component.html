@@ -4,7 +4,10 @@
     <div class="container">
         <nav class="level">
             <div class="level-item has-text-centered">
-                <button class="button is-dark is-fullwidth has-text-weight-bold">Reset</button>
+                <button class="button is-dark has-text-weight-bold"
+                        [disabled]="!gameStarted ? true : null"
+                        (click)="stop()">Stop
+                </button>
             </div>
             <div class="level-item has-text-centered">
                 <div>
@@ -13,7 +16,10 @@
                 </div>
             </div>
             <div class="level-item has-text-centered">
-                <button class="button is-dark is-fullwidth has-text-weight-bold">Start</button>
+                <button class="button is-dark has-text-weight-bold"
+                        [disabled]="gameStarted ? true : null"
+                        (click)="start()">New Game
+                </button>
             </div>
         </nav>
         <br />
@@ -21,7 +27,7 @@
             <div class="level-item has-text-centered">
                 <div>
                     <p class="heading">States Matched</p>
-                    <p class="title">00 / 50</p>
+                    <p class="title">{{countCorrectAnswers()}} / {{states.length}}</p>
                 </div>
             </div>
         </nav>
@@ -35,17 +41,22 @@
                     <input id="state-input"
                            class="input"
                            type="text"
-                           formControlName="state">
+                           formControlName="state"
+                           autocomplete="off">
                 </div>
-                <p class="help">Hint: Hit Enter to submit!</p>
+                <p class="help has-text-grey-light">Hint: Wrong answers will fade out after a few seconds...</p>
             </div>
         </form>
-        <hr>
+        <div class="is-divider"
+             data-content="ANSWERS"></div>
         <div class="tags">
-            <span class="tag is-light"
-                  *ngFor="let it of answers"
-                  [class.is-primary]="false"
-                  [class.is-danger]="true">{{it}}</span>
+            <ng-container *ngFor="let it of answers">
+                <span class="tag"
+                      [@fadeIn]
+                      [@fadeOut]
+                      [class.is-primary]="isCorrect(it)"
+                      [class.is-danger]="!isCorrect(it)">{{it | titlecase}}</span>
+            </ng-container>
         </div>
     </div>
 </section>
