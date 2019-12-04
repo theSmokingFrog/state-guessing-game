@@ -2,36 +2,38 @@
 
 <section class="section">
     <div class="container">
-        <nav class="level">
-            <div class="level-item has-text-centered">
-                <button class="button is-dark has-text-weight-bold"
+        <div class="columns is-vcentered">
+            <div class="column">
+                <button class="button is-fullwidth is-dark has-text-weight-bold"
                         [disabled]="!gameStarted ? true : null"
                         (click)="stop()">Stop
                 </button>
             </div>
-            <div class="level-item has-text-centered">
-                <div>
-                    <p class="heading">Timer</p>
-                    <p class="title is-family-monospace">{{($timer | async) | timestamp}}</p>
-                </div>
+            <div class="column has-text-centered">
+                <p class="heading">Timer</p>
+                <p class="title is-family-monospace">{{($timer | async) | timestamp}}</p>
             </div>
-            <div class="level-item has-text-centered">
-                <button class="button is-dark has-text-weight-bold"
+            <div class="column">
+                <button class="button is-fullwidth is-dark has-text-weight-bold"
                         [disabled]="gameStarted ? true : null"
                         (click)="start()">New Game
                 </button>
             </div>
-        </nav>
+        </div>
         <br />
-        <nav class="level">
-            <div class="level-item has-text-centered">
-                <div>
+        <div>
+            <div class="columns">
+                <div class="column has-text-centered">
                     <p class="heading">States Matched</p>
                     <p class="title">{{countCorrectAnswers()}} / {{states.length}}</p>
                 </div>
             </div>
-        </nav>
-        <br />
+            <progress class="progress is-small"
+                      value="{{(countCorrectAnswers() / states.length) * 100}}"
+                      max="100"
+                      style="position: relative; top: -2.95rem; z-index: -1; opacity: 0.2">
+            </progress>
+        </div>
         <form [formGroup]="form"
               (submit)="submit()">
             <div class="field">
