@@ -30,7 +30,7 @@ export class AppComponent implements OnInit {
   private $resetSubject = new Subject();
 
   public answers: string[] = [];
-  private states: string[] = [
+  public states: string[] = [
     'alabama',
     'alaska',
     'arizona',
