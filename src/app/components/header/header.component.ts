@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-header',
+  selector:    'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls:   ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
 
-  constructor() { }
+  public menuActive = false;
 
-  ngOnInit() {
+  constructor() {
   }
 
+  public toggleMobileMenu() {
+    this.menuActive = !this.menuActive;
+  }
 }
